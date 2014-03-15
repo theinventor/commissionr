@@ -1,4 +1,12 @@
 Commissionr::Application.routes.draw do
+  resources :reports do
+    collection do
+      get :month
+      get :carrier
+      get :customer
+    end
+  end
+
   resources :commissions
 
   resources :customers do

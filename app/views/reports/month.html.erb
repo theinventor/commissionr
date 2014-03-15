@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="span12">
+    <% Commission.months.each do |month| %>
+        <%= link_to month, month_reports_path(month: month), class: 'btn btn-default mhs mvs' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row result">
+  <div class="span12">
+    <% if @results %>
+        <h3>Missing Commissions: <%= (@results.sum(:expected_amount_cents)/100.0).round(2) %></h3>
+        <ol>
+          <% @results.each do |result| %>
+              <li><%= "#{result.full_name } - #{result.carrier}"%></li>
+          <% end %>
+        </ol>
+    <% end %>
+  </div>
+</div>

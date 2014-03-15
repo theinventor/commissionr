@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  index: MyString
+  customer: MyString
+  carrier: MyString
+  month: MyString
+
+two:
+  index: MyString
+  customer: MyString
+  carrier: MyString
+  month: MyString
