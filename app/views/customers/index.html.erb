@@ -13,7 +13,6 @@
       <th>Expected amount</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -24,10 +23,9 @@
         <td><%= customer.last_name %></td>
         <td><%= customer.dob %></td>
         <td><%= customer.carrier %></td>
-        <td><%= customer.expected_amount_cents %></td>
-        <td><%= link_to 'Show', customer %></td>
+        <td><%= customer.expected_amount %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'x', customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
