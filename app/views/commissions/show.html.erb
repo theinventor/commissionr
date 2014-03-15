@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @commission.customer_id %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @commission.month %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @commission.year %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @commission.amount %>
+</p>
+
+<%= link_to 'Edit', edit_commission_path(@commission) %> |
+<%= link_to 'Back', commissions_path %>

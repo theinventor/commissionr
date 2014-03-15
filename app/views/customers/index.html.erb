@@ -1,0 +1,37 @@
+<%= link_to 'New Customer', new_customer_path, style: 'float: right;margin-top: 10px;', class: 'btn btn-primary' %>
+<h1>Customers</h1>
+
+<%= will_paginate @customers %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>DOB</th>
+      <th>Carrier</th>
+      <th>Expected amount</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.first_name %></td>
+        <td><%= customer.last_name %></td>
+        <td><%= customer.dob %></td>
+        <td><%= customer.carrier %></td>
+        <td><%= customer.expected_amount_cents %></td>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

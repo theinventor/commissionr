@@ -1,0 +1,32 @@
+<%= link_to 'New Commission', new_commission_path, style: 'float: right;margin-top: 10px;', class: 'btn btn-primary' %>
+<h1>Commissions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Amount</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commissions.each do |commission| %>
+      <tr>
+        <td><%= commission.customer.full_name if commission.customer %></td>
+        <td><%= commission.month %></td>
+        <td><%= commission.year %></td>
+        <td><%= commission.amount %></td>
+        <td><%= link_to 'Edit', edit_commission_path(commission) %></td>
+        <td><%= link_to 'x', commission, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
