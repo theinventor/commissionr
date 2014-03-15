@@ -1,23 +1,32 @@
 <%= link_to 'New Commission', new_commission_path, style: 'float: right;margin-top: 10px;', class: 'btn btn-primary' %>
 <h1>Commissions</h1>
 
+<%= search_form_for @q, url: commissions_path do |f| %>
+    <span class="mls">Month is</span>
+    <%= f.select :month_eq, options_for_select((Commission.months), (params[:q][:month_eq] if params[:q])), {}, {style: "width: 120px;", class: "mrs"}  %>
+    Hide Invoiced <%# f.check_box :status_not_eq, {},"Invoiced",nil %>
+
+    <%= f.submit 'Filter', class: "btn mls", style: 'margin-bottom: 9px;' %>
+<% end %>
+
+
 <%= will_paginate @commissions %>
 
 <table class="table">
   <thead>
-    <tr>
-      <th>Customer</th>
-      <th>Month</th>
-      <th>Year</th>
-      <th>Amount</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>Customer</th>
+    <th>Month</th>
+    <th>Year</th>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @commissions.each do |commission| %>
+  <% @commissions.each do |commission| %>
       <tr>
         <td><%= commission.customer.full_name if commission.customer %></td>
         <td><%= commission.month %></td>
@@ -26,7 +35,7 @@
         <td><%= link_to 'Edit', edit_commission_path(commission) %></td>
         <td><%= link_to 'x', commission, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
