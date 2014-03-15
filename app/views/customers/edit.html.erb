@@ -4,3 +4,9 @@
 
 <%= link_to 'Show', @customer %> |
 <%= link_to 'Back', customers_path %>
+
+<hr>
+<h4>Commission History</h4>
+<% @customer.commissions.order(:id).each do |commission| %>
+    <li><%= commission.month %>, <%= commission.year %> - <%= commission.amount %></li>
+<% end %>
