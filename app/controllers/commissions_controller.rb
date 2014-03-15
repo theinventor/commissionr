@@ -4,7 +4,7 @@ class CommissionsController < ApplicationController
   # GET /commissions
   # GET /commissions.json
   def index
-    @commissions = Commission.all
+    @commissions = Commission.order('id DESC').paginate per_page: 100, page: params[:page]
   end
 
   # GET /commissions/1

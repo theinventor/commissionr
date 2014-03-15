@@ -1,6 +1,8 @@
 <%= link_to 'New Commission', new_commission_path, style: 'float: right;margin-top: 10px;', class: 'btn btn-primary' %>
 <h1>Commissions</h1>
 
+<%= will_paginate @commissions %>
+
 <table class="table">
   <thead>
     <tr>
