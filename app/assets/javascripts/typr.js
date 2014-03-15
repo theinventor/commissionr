@@ -21,6 +21,14 @@ $(document).ready(function() {
   $('.customer-autocomplete').typeahead(null,{
     name: 'customer-search',
     source: customers.ttAdapter(),
+      templates: {
+          empty: [
+            '<div class="empty-message">',
+            'unable to find any customers that match the current query',
+            '</div>'
+          ].join('\n'),
+          suggestion: Handlebars.compile('<div class="searchy"><p class="white"><strong>{{name}}</strong> – {{carrier}}</p></div>')
+        }
   });
 
   $('.customer-autocomplete').on('typeahead:selected', function (e, datum) {

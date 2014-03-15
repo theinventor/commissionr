@@ -15,3 +15,14 @@
 body {
     padding-top: 50px;
 }
+
+.white {
+    background: white;
+}
+
+.searchy {
+    width: 200px;
+    height: 20px;
+    background: white;
+    border: 1px solid;
+}
