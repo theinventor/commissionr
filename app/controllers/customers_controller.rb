@@ -13,8 +13,12 @@ class CustomersController < ApplicationController
   end
 
   def autocomplete_query
-    @customers = @account.customers.find_by_name(params[:query])
-    render :autocomplete
+    if params[:filter] == "all"
+      @customers = Customer.all
+    else
+      @customers = Customer.find_by_name(params[:query])
+    end
+    render json: @customers, root: false
   end
 
   # GET /customers/new

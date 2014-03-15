@@ -5,11 +5,17 @@ class Customer < ActiveRecord::Base
   scope :find_by_name, (lambda do |name|
      firstname = name.split(' ', 2).first
      lastname = name.split(' ', 2).last
-     if name.split(' ', 2).size == 1 # name input is one name
-       limit(10).where('first_name ILIKE (?) OR last_name ILIKE (?)', "#{name}%", "#{name}%")
+
+     if Rails.env.development?
+       limit(10).where(first_name: firstname)
      else
-       limit(10).where('firstname ILIKE (?) AND lastname ILIKE (?)', "#{firstname}%", "#{lastname}%")
+       if name.split(' ', 2).size == 1 # name input is one name
+         limit(10).where('first_name ILIKE (?) OR last_name ILIKE (?)', "#{name}%", "#{name}%")
+       else
+         limit(10).where('firstname ILIKE (?) AND lastname ILIKE (?)', "#{firstname}%", "#{lastname}%")
+       end
      end
+
   end)
 
 

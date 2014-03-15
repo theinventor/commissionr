@@ -1,16 +1,31 @@
 $(document).ready(function() {
-    $('.customer-typeahead').typeahead({
-        name: 'customer-search',
-        prefetch: {
-            url: '/customers/autocomplete.json?secret=123',
-            ttl: 432000000
-        },
-        remote: '/customers/autocomplete_query?query=%QUERY',
-        limit: 10
-    });
-    $('.customer-typeahead').on('typeahead:selected', function (e, datum) {
-        var destination = '/customers/'+datum.record;
-        window.location = destination;
-    });
+  var customers, promise;
+
+  customers = new Bloodhound({
+    remote: '/customers/autocomplete_query.json?query=%QUERY',
+    datumTokenizer: function(d) { return d.tokens; },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    limit: 10,
+    prefetch: '/customers/autocomplete_query.json?filter=all'
+  });
+
+  promise = customers.initialize();
+
+  promise.done(function() {
+    console.log('playing with promises!');
+  }).fail(function() {
+    console.log('err!');
+  });
+
+
+  $('.customer-autocomplete').typeahead(null,{
+    name: 'customer-search',
+    source: customers.ttAdapter(),
+  });
+
+  $('.customer-autocomplete').on('typeahead:selected', function (e, datum) {
+    var destination = '/customers/'+datum.record;
+    window.location = destination;
+  });
 
 });
