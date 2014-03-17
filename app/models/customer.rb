@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
 
-  has_many :commissions
+  has_many :commissions, dependent: :destroy
 
   scope :find_by_name, (lambda do |name|
      firstname = name.split(' ', 2).first
