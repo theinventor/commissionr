@@ -25,7 +25,7 @@
           </tr>
           <% @results.each do |result| %>
               <tr>
-                <td><%= "#{result.full_name }"%></td>
+                <td><%= link_to "#{result.full_name }", edit_customer_path(result) %></td>
                 <td><%= "#{result.start_date.to_s }"%></td>
                 <td><%= "#{result.dob }"%></td>
                 <td><%= "#{result.expected_amount }"%></td>
