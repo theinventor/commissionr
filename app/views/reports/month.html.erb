@@ -10,11 +10,23 @@
   <div class="span12">
     <% if @results %>
         <h3>Missing Commissions: <%= (@results.sum(:expected_amount_cents)/100.0).round(2) %></h3>
-        <ol>
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>DOB</th>
+            <th>Carrier</th>
+          </tr>
           <% @results.each do |result| %>
-              <li><%= "#{result.full_name } - #{result.carrier}"%></li>
+              <tr>
+                <td><%= "#{result.full_name }"%></td>
+                <td><%= "#{result.start_date.to_s }"%></td>
+                <td><%= "#{result.dob }"%></td>
+                <td><%= "#{result.carrier }"%></td>
+              </tr>
+
           <% end %>
-        </ol>
+        </table>
     <% end %>
   </div>
 </div>
