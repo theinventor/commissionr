@@ -10,11 +10,17 @@
   <div class="span12">
     <% if @results %>
         <h3>Missing Commissions: <%= (@results.sum(:expected_amount_cents)/100.0).round(2) %></h3>
+        <p>
+          <% Customer.pluck(:carrier).uniq.each do |carrier|%>
+              <%= link_to "#{carrier}", "#{request.fullpath}&carrier=#{carrier}", class: 'btn btn-default mhs mvs' %>
+          <% end %>
+        </p>
         <table class="table">
           <tr>
             <th>Name</th>
             <th>Start Date</th>
             <th>DOB</th>
+            <th>Expected Amount</th>
             <th>Carrier</th>
           </tr>
           <% @results.each do |result| %>
@@ -22,6 +28,7 @@
                 <td><%= "#{result.full_name }"%></td>
                 <td><%= "#{result.start_date.to_s }"%></td>
                 <td><%= "#{result.dob }"%></td>
+                <td><%= "#{result.expected_amount }"%></td>
                 <td><%= "#{result.carrier }"%></td>
               </tr>
 
