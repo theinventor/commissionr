@@ -39,6 +39,7 @@ class CustomersController < ApplicationController
         Customer.create first_name row['first_name'],
                                    last_name: row['last_name'],
                                    dob: row['dob'],
+                                   start_date: Date.parse("2014-01-01"),
                                    carrier: row['carrier'],
                                    expected_amount: row['expected_amount']
         result << row
@@ -106,6 +107,6 @@ class CustomersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :dob, :carrier, :expected_amount)
+    params.require(:customer).permit(:first_name, :last_name, :dob, :carrier, :expected_amount, :start_date)
   end
 end

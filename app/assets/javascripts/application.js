@@ -15,3 +15,10 @@
 //= require handlebars
 //= require typeahead
 //= require typr
+
+
+$(function() {
+   $( ".datepicker" ).datepicker({
+       dateFormat: "yy-mm-dd"
+   });
+ });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315122009) do
+ActiveRecord::Schema.define(version: 20140317162045) do
 
   create_table "commissions", force: true do |t|
     t.integer  "customer_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140315122009) do
     t.integer  "expected_amount_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
   end
 
 end
