@@ -36,13 +36,13 @@ class CustomersController < ApplicationController
     if params[:csv_file][:commit] == 'true'
       result = []
       CSV.foreach(file.tempfile.path, headers: true) do |row|
-        Customer.create first_name row['first_name'],
-                                   last_name: row['last_name'],
-                                   dob: row['dob'],
-                                   start_date: Date.parse("2014-01-01"),
-                                   carrier: row['carrier'],
-                                   expected_amount: row['expected_amount'],
-                                   notes: row['notes']
+        Customer.create first_name: row['first_name'],
+                        last_name: row['last_name'],
+                        dob: row['dob'],
+                        start_date: Date.parse("2014-01-01"),
+                        carrier: row['carrier'],
+                        expected_amount: row['expected_amount'],
+                        notes: row['notes']
         result << row
       end
       @count = result.size
