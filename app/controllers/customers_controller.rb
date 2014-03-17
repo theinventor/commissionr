@@ -41,7 +41,8 @@ class CustomersController < ApplicationController
                                    dob: row['dob'],
                                    start_date: Date.parse("2014-01-01"),
                                    carrier: row['carrier'],
-                                   expected_amount: row['expected_amount']
+                                   expected_amount: row['expected_amount'],
+                                   notes: row['notes']
         result << row
       end
       @count = result.size
@@ -107,6 +108,6 @@ class CustomersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :dob, :carrier, :expected_amount, :start_date)
+    params.require(:customer).permit(:first_name, :last_name, :dob, :carrier, :expected_amount, :start_date, :notes)
   end
 end
