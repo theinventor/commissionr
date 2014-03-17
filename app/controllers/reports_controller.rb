@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
     if params[:month]
       commissions = Commission.where(month: params[:month])
       start_date = Date.strptime("#{params[:month]} 1 2014", "%B %d %Y")
-      customer_ids = Customer.where('start_date > ?',start_date).pluck(:id)
+      customer_ids = Customer.where('start_date < ?',start_date).pluck(:id)
       missing_customer_ids = customer_ids-commissions.pluck(:customer_id)
       customers = Customer.where(id: missing_customer_ids)
       @results = customers
