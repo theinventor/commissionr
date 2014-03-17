@@ -15,10 +15,13 @@
 //= require handlebars
 //= require typeahead
 //= require typr
+//= require chosen.jquery
 
 
 $(function() {
    $( ".datepicker" ).datepicker({
        dateFormat: "yy-mm-dd"
    });
+
+    $(".chosen-select").chosen();
  });

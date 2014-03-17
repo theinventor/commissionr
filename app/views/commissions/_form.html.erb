@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :customer_id, as: :select, collection: Customer.order(:last_name), label_method: :full_name, autofocus: true %>
+    <%= f.input :customer_id, as: :select, collection: Customer.order(:last_name), label_method: :full_name, autofocus: true, input_html: {class: 'chosen-select', style: 'width: 300px; padding-bottom: 20px;'} %>
     <%= f.input :month, as: :select, collection: Commission.months, selected: Date.today.strftime("%B") %>
     <%= f.input :year, as: :select, collection: Commission.years, selected: Date.today.year.to_s  %>
     <%= f.input :amount %>
