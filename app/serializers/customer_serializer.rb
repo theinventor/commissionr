@@ -5,6 +5,10 @@ class CustomerSerializer < ActiveModel::Serializer
     object.full_name
   end
 
+  def carrier
+    object.carrier
+  end
+
   def record
     object.id
   end

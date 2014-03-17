@@ -21,6 +21,34 @@ class CustomersController < ApplicationController
     render json: @customers, root: false
   end
 
+  def import
+
+  end
+
+  def upload
+    require 'csv'
+    file = params[:csv_file][:file]
+    @result = []
+    CSV.foreach(file.tempfile.path) do |row|
+      @result << row
+    end
+
+    if params[:csv_file][:commit] == 'true'
+      result = []
+      CSV.foreach(file.tempfile.path, headers: true) do |row|
+        Customer.create first_name row['first_name'],
+                                   last_name: row['last_name'],
+                                   dob: row['dob'],
+                                   carrier: row['carrier'],
+                                   expected_amount: row['expected_amount']
+        result << row
+      end
+      @count = result.size
+      render text: "Import done, we imported #{@count} customers"
+    end
+
+  end
+
   # GET /customers/new
   def new
     @customer = Customer.new

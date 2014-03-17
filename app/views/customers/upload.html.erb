@@ -1,0 +1,28 @@
+<h4>Preview</h4>
+
+<table class="table">
+  <tr>
+    <% @result[0].each do |column| %>
+        <th><%= column %></th>
+    <% end %>
+  </tr>
+  <% @result.each_with_index do |row,index| %>
+      <% if index > 0 %>
+          <tr>
+            <% row.each do |column| %>
+                <td><%= column %></td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<hr>
+<h4>Commit</h4>
+<p>If you are sure that looks good, just upload it again!</p>
+<%= simple_form_for :csv_file, url: upload_customers_path, html: {multipart: true} do |f| %>
+    <p>Just upload your CSV file to us and we'll see what we can do.</p>
+    <%= f.input :file, as: :file, input_html: {accept: 'text/csv'} %>
+    <%= f.input :commit, as: :hidden, input_html: {value: true} %>
+    <%= f.submit 'Upload', class: 'button' %>
+<% end %>

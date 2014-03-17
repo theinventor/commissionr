@@ -11,6 +11,8 @@ Commissionr::Application.routes.draw do
 
   resources :customers do
     collection do
+      get :import
+      post :upload
       get :autocomplete_query
     end
   end
