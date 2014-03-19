@@ -4,7 +4,8 @@
 <%= search_form_for @q, url: commissions_path do |f| %>
     <span class="mls">Month is</span>
     <%= f.select :month_eq, options_for_select((Commission.months), (params[:q][:month_eq] if params[:q])), {}, {style: "width: 120px;", class: "mrs"}  %>
-    Hide Invoiced <%# f.check_box :status_not_eq, {},"Invoiced",nil %>
+    <%= f.label "Carrier" %>
+    <%= f.text_field :customer_carrier_cont, style: 'width: 100px;' %>
 
     <%= f.submit 'Filter', class: "btn mls", style: 'margin-bottom: 9px;' %>
 <% end %>
